@@ -47,7 +47,9 @@ module.exports = {
             template: path.resolve("./index.html")  // 模板文件路径
         }), 
         // new OpenBower({url: "http://localhost:3000", browser:"chrome"}), // 默认用谷歌浏览器打开
-        new ProcessBar(),
+        new ProcessBar({
+            clear: false // 达到 100 时不清除这个状态
+        }),
         new FriendlyErrorsWebpackPlugin()
     ]
 }

@@ -40,7 +40,7 @@ module.exports = function start(port) { // config 读取文件的方式获得
     app.listen(port, "localhost",function () {
         if (openBrowser(`http://localhost:${port}`)) {
             // 清理控制台
-            // clearConsole();
+            clearConsole();
             console.log(chalk.blue(`webpack is runing at ${port} port`));
         }
     });
