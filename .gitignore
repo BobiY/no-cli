@@ -10,8 +10,6 @@
 # production
 /dist
 
-# misc
-.DS_Store
 # test
 /src
 /mocker
