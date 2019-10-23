@@ -19,6 +19,7 @@
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "@typescript-eslint/parser": "^2.5.0",
     "autoprefixer": "^9.6.5",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "chalk": "^2.4.2",
     "css-cleanup-webpack-plugin": "^1.0.2",
@@ -40,6 +41,8 @@
     "postcss-loader": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.12.1",
     "rm-unused-css": "^1.1.13",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.6.4",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2"
