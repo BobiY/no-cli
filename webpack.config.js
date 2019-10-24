@@ -33,15 +33,15 @@ module.exports = function config(port, ip){
                         {
                             loader: "babel-loader",
                             options: {
-                                presets: ["@babel/preset-env"],
-                                plugins: ["@babel/plugin-transform-runtime"],
+                                presets: [require.resolve("@babel/preset-env")],
+                                plugins: [require.resolve("@babel/plugin-transform-runtime")],
                                 cacheDirectory: true
                             }
                         }
                     ], 
                     include: [
-                        path.resolve(process.cwd(), "./src"),
-                        path.resolve(process.cwd(), "./mocker")
+                        "./src/",
+                        "./mocker/"
                     ]
                 },
                 { 
@@ -49,8 +49,8 @@ module.exports = function config(port, ip){
                     loader: "awesome-typescript-loader",
                     exclude: /node_modules/,
                     include: [
-                        path.resolve(process.cwd(), "./src"),
-                        path.resolve(process.cwd(), "./mocker")
+                        "./src/",
+                        "./mocker/"
                     ]
                 },
             ]
@@ -58,8 +58,8 @@ module.exports = function config(port, ip){
         plugins: [
             new HtmlWebpackPlugin({
                 title: "my-cmd",
-                filename: path.resolve("./dist/index.html"), // 文件输出路径
-                template: path.resolve("./index.html")  // 模板文件路径
+                filename: "./dist/index.html", // 文件输出路径
+                template: "./index.html"  // 模板文件路径
             }), 
             // new OpenBower({url: "http://localhost:3000", browser:"chrome"}), // 默认用谷歌浏览器打开
             new ProcessBar({

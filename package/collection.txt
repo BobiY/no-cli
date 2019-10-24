@@ -1,0 +1,43 @@
+update-notifier  如果本地的版本 和 远程的版本不一致，提示可用的更新信息
+
+isFinite() 判断传入的参数数值是否为一个有限数值。在必要情况下，参数会首先转换为一个数值。（Number.isFinite 更加强大）
+
+child_process node 自带包，用来执行 cmd 命令
+
+mocker-api 可以搭配 webpack 提供 mock 数据  https://segmentfault.com/a/1190000013220134（这个直接写在 dev server 中的，所以对于开发 mock 更合适）
+
+mockjs-webpack-plugin 直接配合 mockjs 的数据格式进行数据模拟请求   https://www.jianshu.com/p/d07f9a1f474c 源码解析
+
+inquirer 提供命令行交互式的命令就行数据收集
+
+progress-bar-webpack-plugin webpack 编译进度条插件
+
+Friendly-errors-webpack-plugin webpack 优化命令行显示
+
+fs.access(path[, mode], callback);  判断文件和目录是否存在
+
+wireshark  抓包工具
+
+react-dev-utils -- 包含了一系列实用工具
+
+detect-port --- 检测端口是否被占用
+
+resolveLoader --- webpack loader 应该在哪个文件夹里面搜索
+
+path.resolve() --- 需要在全面的看一下子
+
+@babel/plugin-transform-runtime  --- 能防止 babel 的帮助代码注入每个编译脚本中
+
+the 'transform-runtime' plugin tells Babel to require the runtime instead of inlining it.
+
+@babel/runtime --- 生产环境的依赖，注入 babel 的帮助脚本 
+
+babel 的运行时插件针对多入口 app 的应用，在编译时不会同时注入，而是在不同的各个文件中引用
+
+browsercraigslist 和 package 里的 browserslist 不能同时存在，不然 babel/preset-env 会报错
+
+path.sep 获取分隔符  process.cwd() 获取运行路径
+
+AbortController接口代表一个控制器对象，允许你在需要时中止一个或多个DOM请求。  https://developer.mozilla.org/zh-CN/docs/Web/API/FetchController#Browser_compatibility
+
+require.resolve()  函数来查询某个模块文件的带有完整绝对路径的文件名(会检测文件存不存在，路径是这个命令存在目录，绝对路径是包下的 index.js)；

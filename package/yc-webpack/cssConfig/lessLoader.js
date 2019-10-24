@@ -9,7 +9,7 @@ module.exports = {
     less: {
         test: /\.(le|c)ss$/,
         use: [
-            MiniCssExtractPlugin.loader,
+            "style-loader",
             "css-loader",
             {
                 loader: "postcss-loader",

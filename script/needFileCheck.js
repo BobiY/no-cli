@@ -23,7 +23,7 @@ function isNeedTs(flge) {
 }
 
 function createTsConfig() {
-    // 自动创建默认的 tsconfig.json 文件 创建好以后推出，重新启动生效
+    // 自动创建默认的 tsconfig.json 文件 创建好以后退出，重新启动生效
     fs.readFile(path.resolve(__dirname, "../tsconfig.json"), function (err, data) { // 先读取本地的默认配置文件
         if (err) {
             console.error(err);
