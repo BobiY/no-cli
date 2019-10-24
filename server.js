@@ -8,8 +8,8 @@ const WebpackDevServer = require("webpack-dev-server");
 const clearConsole = require("react-dev-utils/clearConsole");  // 清理控制台
 const os = require('os');
 const { IP } = require("./script/getLocalIp.js"); 
-module.exports = function start(port) { // config 读取文件的方式获得
-    const webpackConfig = config(port, IP());
+module.exports = function start(port, entryFile) { // config 读取文件的方式获得
+    const webpackConfig = config(port, IP(), entryFile);
     // 重置 webpack config 的配置项
     webpackConfig.module.rules.push(...loader.loader);
     webpackConfig.plugins.push( ...loader.plugin );
@@ -17,7 +17,7 @@ module.exports = function start(port) { // config 读取文件的方式获得
     // 获取编译配置项
     const compiler = webpack(webpackConfig);
 
-    console.log(`info: ${chalk.blue("server is start")} at ${chalk.red(__dirname)}`);
+    console.log(`info: ${chalk.blue("server is start")} at ${chalk.red(process.cwd())}`);
 
     // 配置开发服务器
     const app = new WebpackDevServer(compiler, {

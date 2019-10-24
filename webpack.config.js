@@ -5,9 +5,11 @@ const ProcessBar = require("progress-bar-webpack-plugin");  // 用百分比显�
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); // 优化命令行显示
 const chalk = require("chalk");
 
-module.exports = function config(port, ip){
+module.exports = function config(port, ip, entryFile){
     return {
-        entry: './src/index.js',
+        entry: {
+            index: entryFile || './src/index.js' // 可对入口文件做更加深入的解析，支持多入口文件等
+        },
         devtool: "cheap-module-eval-source-map",
         output: {
             filename: "bundle.js",
@@ -18,7 +20,7 @@ module.exports = function config(port, ip){
         resolveLoader: {
             modules: [
                 path.resolve(__dirname, 'node_modules'), // 指定当前目录下的 node_modules 优先查找
-                path.resolve('node_modules'), // 如果有一些类库是放在一些奇怪的地方的，你可以添加自定义的路径或者目录
+                "node_modules", // 如果有一些类库是放在一些奇怪的地方的，你可以添加自定义的路径或者目录
             ]
         },
         resolve: {
@@ -40,8 +42,8 @@ module.exports = function config(port, ip){
                         }
                     ], 
                     include: [
-                        "./src/",
-                        "./mocker/"
+                        path.resolve("./src"),
+                        path.resolve("./mocker")
                     ]
                 },
                 { 
@@ -49,8 +51,8 @@ module.exports = function config(port, ip){
                     loader: "awesome-typescript-loader",
                     exclude: /node_modules/,
                     include: [
-                        "./src/",
-                        "./mocker/"
+                        path.resolve("./src"),
+                        path.resolve("./mocker")
                     ]
                 },
             ]
@@ -58,8 +60,8 @@ module.exports = function config(port, ip){
         plugins: [
             new HtmlWebpackPlugin({
                 title: "my-cmd",
-                filename: "./dist/index.html", // 文件输出路径
-                template: "./index.html"  // 模板文件路径
+                filename: path.resolve("./dist/index.html"), // 文件输出路径
+                template: path.resolve("./index.html")  // 模板文件路径
             }), 
             // new OpenBower({url: "http://localhost:3000", browser:"chrome"}), // 默认用谷歌浏览器打开
             new ProcessBar({

@@ -53,7 +53,7 @@ module.exports = function canRunServer(callback) {
         createTsConfig();
     }
 
-    // 获得入口文件
+    // 获得入口文件(加入webpack 的入口文件中)
     const entryFile = program.entry || "./src/index.js";
 
     // 检测入口文件是否存在
@@ -67,6 +67,6 @@ module.exports = function canRunServer(callback) {
             return;
         }
         isNeedTs(program.typescript);
-        callback();
+        callback(entryFile);
     })
 }

@@ -11,7 +11,7 @@ const canRunServer = require("./script/needFileCheck.js");
 const DEFAULT_PORT = 3000; // 默认端口号
 // console.log(module.paths);
 // 初始化执行函数
-function init() {
+function init(entryFile) {
 
     // 检测默认端口是否被占用
     detect(DEFAULT_PORT, ( err, _port ) => { 
@@ -31,7 +31,7 @@ function init() {
         // 如果端口被占用，则询问是否在新的端口开启服务
         inquirer.prompt([question]).then( ({changePort}) => {
             if ( changePort ) {
-                start(_port);
+                start(_port, entryFile);
             }
         }, err => {
             console.log("err", err)
