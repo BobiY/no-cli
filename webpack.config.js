@@ -5,8 +5,17 @@ const ProcessBar = require("progress-bar-webpack-plugin");  // 用百分比显�
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); // 优化命令行显示
 const chalk = require("chalk");
 
-module.exports = function config(port, ip, entryFile){
-    return {
+module.exports = function config({port, ip, entryFile, canUseTs}){
+    const tsLoader = { 
+        test: /\.tsx?$/,
+        loader: "awesome-typescript-loader",
+        exclude: /node_modules/,
+        include: [
+            path.resolve("./src"),
+            path.resolve("./mocker")
+        ]
+    };
+    const config = {
         entry: {
             index: entryFile || './src/index.js' // 可对入口文件做更加深入的解析，支持多入口文件等
         },
@@ -46,15 +55,6 @@ module.exports = function config(port, ip, entryFile){
                         path.resolve("./mocker")  // exclude 和 include 的路径应为绝对路径
                     ]
                 },
-                { 
-                    test: /\.tsx?$/,
-                    loader: "awesome-typescript-loader",
-                    exclude: /node_modules/,
-                    include: [
-                        path.resolve("./src"),
-                        path.resolve("./mocker")
-                    ]
-                },
             ]
         },
         plugins: [
@@ -79,4 +79,8 @@ module.exports = function config(port, ip, entryFile){
             })
         ]
     };
+    if ( canUseTs ) {
+        config.module.rules.push( tsLoader );
+    }
+    return config;
 }

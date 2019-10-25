@@ -8,8 +8,8 @@ const WebpackDevServer = require("webpack-dev-server");
 const clearConsole = require("react-dev-utils/clearConsole");  // 清理控制台
 const os = require('os');
 const { IP } = require("./script/getLocalIp.js"); 
-module.exports = function start(port, entryFile) { // config 读取文件的方式获得
-    const webpackConfig = config(port, IP(), entryFile);
+module.exports = function start({port, entryFile, canUseTs}) { // config 读取文件的方式获得
+    const webpackConfig = config({port, ip: IP(), entryFile, canUseTs});
     // 重置 webpack config 的配置项
     webpackConfig.module.rules.push(...loader.loader);
     webpackConfig.plugins.push( ...loader.plugin );

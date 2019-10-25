@@ -6,14 +6,20 @@ module.exports = {
     tsQuestion: {
         type: "confirm",
         name: "useTs",
-        message: chake.yellow("\n can you use typescript?"),
+        message: chalk.yellow("can you use typescript?"),
         defalult: false
     },
     postQuestion: {
         type: "confirm",
         name: "changePort",
-        message: chalk.yellow('\nSomething is already running on port ' + DEFAULT_PORT + '.' + (existingProcess ? ' Probably:\n  ' + existingProcess : '') + '\n\nWould you like to run the app on another port instead?');,
+        message: chalk.yellow('\nSomething is already running on port ' + DEFAULT_PORT + '.' + (existingProcess ? ' Probably:\n  ' + existingProcess : '') + '\n\nWould you like to run the app on another port instead?'),
         default: false
     },
-    DEFAULT_PORT: DEFAULT_PORT
+    DEFAULT_PORT: DEFAULT_PORT,
+    createConfig: {
+        type: "confirm",
+        name: "createFile",
+        message: chalk.yellow("\ntsconfig.json is not exist you current file folder, create is now ?"),
+        default: false
+    }
 }
