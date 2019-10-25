@@ -45,7 +45,7 @@ module.exports = function canRunServer(callback) {
         .version('0.0.1')
         .option('-e, --entry [entry]', 'app entry file')
         .option("-t, --ts [typescript]", "use typescript")
-        .option("-c, --create [create]", "create tsconfig.json at root file folder")
+        .option("-c, --create [create]", "create tsconfig.json at you root file folder")
         .parse(process.argv);
 
     // 创建默认的 tsconfig.json
@@ -67,6 +67,6 @@ module.exports = function canRunServer(callback) {
             return;
         }
         isNeedTs(program.typescript);
-        callback(entryFile);
+        callback(entryFile);  // 执行 init 函数，接受的参数是 webpack 的入口文件路径，这个路径需要相对路径
     })
 }

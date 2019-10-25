@@ -41,3 +41,5 @@ path.sep 获取分隔符  process.cwd() 获取运行路径
 AbortController接口代表一个控制器对象，允许你在需要时中止一个或多个DOM请求。  https://developer.mozilla.org/zh-CN/docs/Web/API/FetchController#Browser_compatibility
 
 require.resolve()  函数来查询某个模块文件的带有完整绝对路径的文件名(会检测文件存不存在，路径是这个命令存在目录，绝对路径是包下的 index.js)；
+
+ES6 的继承会继承类的所有属性和方法

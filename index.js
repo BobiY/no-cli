@@ -1,15 +1,13 @@
 #!/usr/bin/env node
 const program = require("commander");
 const child = require("child_process");
-const webpackConfig = require("./webpack.config.js");
 const start = require("./server.js");
 const detect = require("detect-port");
 const inquirer = require('react-dev-utils/inquirer');
 const chalk = require("chalk");
-const getProcessForPort = require('react-dev-utils/getProcessForPort');
 const canRunServer = require("./script/needFileCheck.js");
-const DEFAULT_PORT = 3000; // 默认端口号
-// console.log(module.paths);
+const question = require("./script/question.js");
+const DEFAULT_PORT = question.DEFAULT_PORT; // 默认端口号
 // 初始化执行函数
 function init(entryFile) {
 
@@ -19,17 +17,9 @@ function init(entryFile) {
             start(DEFAULT_PORT);
             return ;
         }
-        const existingProcess = getProcessForPort(DEFAULT_PORT);
-        const message = chalk.yellow('\nSomething is already running on port ' + DEFAULT_PORT + '.' + (existingProcess ? ' Probably:\n  ' + existingProcess : '') + '\n\nWould you like to run the app on another port instead?');
-        const question = {
-            type: 'confirm',
-            name: 'changePort',
-            message,
-            default: false
-        };
-
         // 如果端口被占用，则询问是否在新的端口开启服务
-        inquirer.prompt([question]).then( ({changePort}) => {
+        inquirer.prompt([question.tsQuestion, question.postQuestion]).then( ({useTs, changePort}) => {
+            console.log(changePort, useTs)
             if ( changePort ) {
                 start(_port, entryFile);
             }

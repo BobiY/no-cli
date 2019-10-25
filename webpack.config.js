@@ -43,7 +43,7 @@ module.exports = function config(port, ip, entryFile){
                     ], 
                     include: [
                         path.resolve("./src"),
-                        path.resolve("./mocker")
+                        path.resolve("./mocker")  // exclude 和 include 的路径应为绝对路径
                     ]
                 },
                 { 
