@@ -7,20 +7,6 @@ const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
 const program = require('commander');
-function isNeedTs(flge) {
-    const currentPath = process.cwd();
-    const step = path.sep;
-    const configFile = `${currentPath}${step}tsconfig.json`;
-    if ( flge ) {
-        fs.access( path.resolve(configFile), err => {
-            if ( err ) {
-                console.log(`current file folder has not ${chalk.red("tsconfig.json")}, you should create it~`);
-                console.log(chalk.blue(`you can use <no -c> to create tsconfig.json at you root file folder`))
-                process.exit();
-            }
-        } );
-    }
-}
 
 function createTsConfig() {
     // 自动创建默认的 tsconfig.json 文件 创建好以后退出，重新启动生效
@@ -46,6 +32,7 @@ module.exports = function canRunServer(callback) {
         .option('-e, --entry [entry]', 'app entry file')
         .option("-t, --ts [typescript]", "use typescript")
         .option("-c, --create [create]", "create tsconfig.json at you root file folder")
+        .option("-x, --config [config]", "youself config file path")
         .parse(process.argv);
 
     // 创建默认的 tsconfig.json
@@ -55,7 +42,7 @@ module.exports = function canRunServer(callback) {
 
     // 获得入口文件(加入webpack 的入口文件中)
     const entryFile = program.entry || "./src/index.js";
-
+    // callback("");
     // 检测入口文件是否存在
     fs.access(path.resolve(entryFile), err => {
         if ( err ) {
@@ -66,7 +53,6 @@ module.exports = function canRunServer(callback) {
             process.exit();
             return;
         }
-        isNeedTs(program.typescript);
         callback(entryFile);  // 执行 init 函数，接受的参数是 webpack 的入口文件路径，这个路径需要相对路径
     })
 }

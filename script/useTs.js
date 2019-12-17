@@ -34,5 +34,5 @@ module.exports = async function useTs() {
             createTsConfig();
         }
     }
-    return Promise.resolve().then( () => ({canUseTs}) );
+    return Promise.resolve().then( () => ({canUseTs: useTs}) );
 }
